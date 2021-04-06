@@ -3,7 +3,7 @@ Setup
 - `npm install`
 - Boot with `npm run dev`
 
-Next step https://nextjs.org/learn/basics/create-nextjs-app/welcome-to-nextjs
+Next step https://nextjs.org/learn/basics/dynamic-routes/implement-getstaticpaths
 
 [Routing documentation](https://nextjs.org/docs/routing/introduction)
 
@@ -59,8 +59,28 @@ export async function getServerSideProps(context) {
 }
 ```
 
-Use [swr](https://swr.vercel.app/) for client side fetching. It handles some extra optimization. 
+Use [swr](https://swr.vercel.app/) for client side fetching. It handles some extra optimization.
 
 ```js
 import useSWR from 'swr'
+```
+
+## Dynamic Routes
+
+We can build all possible pages statically here so we still get some sweet SEO
+
+**QUESTION: If SEO isn't a concern, is this needed? If we have a site with thousands of blog posts, will these static pages be sitting there taking up space? Slow down our boot/deploy/startup?**
+
+### `getStaticPaths`
+
+Get all possible paths (e.g. blog post IDs)
+
+```js
+export async function getStaticPaths() {
+  const data = ... // get data
+  return {
+    data,
+    fallback: false
+  }
+}
 ```
