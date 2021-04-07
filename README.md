@@ -84,3 +84,20 @@ export async function getStaticPaths() {
   }
 }
 ```
+
+Then use `getStaticProps({ params }) {...}` to generate all pages.
+
+If `fallback` is true, then paths that are not pre-rendered (from build) will simply render at run time. This will also build a static version on the backend that can be served for any following requests.
+
+### Catch all routes
+
+Naming a file `[...id].js` will match `/a`, `/a/b`, and `/a/b/c` and so on. The params will be returned like this:
+```
+{
+  params: {
+    // Statically Generates /posts/a/b/c
+    id: ['a', 'b', 'c']
+  }
+}
+//...
+```
