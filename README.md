@@ -101,3 +101,15 @@ Naming a file `[...id].js` will match `/a`, `/a/b`, and `/a/b/c` and so on. The 
 }
 //...
 ```
+
+## API
+
+Put API endpoints in `pages/api/name-of-endpoint.js`
+
+```js
+export default function handler(req, res) {
+  res.status(200).json({ text: 'Hello' })
+}
+```
+
+Don't hit this endpoint from the static functions. We can just call the server side code directly.
